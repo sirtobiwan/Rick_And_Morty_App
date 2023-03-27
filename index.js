@@ -26,7 +26,7 @@ async function fetchCharacters() {
       const data = await response.json();
       const result = data.results;
       maxPage = data.info.pages;
-      console.log(maxPage)
+      console.log(maxPage);
 
       result.forEach(createCharacterCard);
       pagination.innerHTML = `${page} / ${maxPage}`;
@@ -35,28 +35,26 @@ async function fetchCharacters() {
     }
   } catch (error) {
     console.error('An Error occurred');
-    pagination.innerHTML = "😳";
+    pagination.innerHTML = '😳';
   }
-  
 }
 fetchCharacters();
 
-
-
 nextButton.addEventListener('click', () => {
-  if(page < maxPage){
-  page++;
-  fetchCharacters();}
+  if (page < maxPage) {
+    page++;
+    fetchCharacters();
+  }
 });
 
 prevButton.addEventListener('click', () => {
-  if(page>1){
-  page--;
-  fetchCharacters();}
-  console.log(maxPage)
+  if (page > 1) {
+    page--;
+    fetchCharacters();
+  }
 });
 
-searchBar.addEventListener('submit', (event) => {
+searchBar.addEventListener('submit', event => {
   page = 1;
   event.preventDefault();
   searchQuery = event.target.elements.query.value;
